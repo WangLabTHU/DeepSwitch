@@ -37,70 +37,46 @@ The function of this package depends on the following Python packages:
 
 ## Dataset Preparation
 
-This study is primarily based on the CAGE-seq data from FANTOM5. The relevant training data is stored in the dataset folders. The following table conclude the function of these data.
+The relevant training data is stored in the [Zenedo](https://zenodo.org/records/17567543). The following table conclude the function of these data.
 
 
-| Folder Name | Description| Acquisition|
-| ------ | ------ |------ |
-| AAE_pretrain | Large-scale unsupervised training on 1.8 million 5’ RSs from 2621 representative bacteria genomes | 10.5281/zenodo.14598566
-| AAE_finetune | Representative Enterobacterales and Pseudomonadales bacteria species | 10.5281/zenodo.14598566
-| AAE_represent | Testing dataset for the representation of RSs from various bacteria genomes o assess DeepCROSS’s ability to derive meaningful features | This repository
-| AAE_supervised | Supervised training dataset from previous [research](https://www.nature.com/articles/nmeth.4633), with tag `NM2018`; MPRA results from our experiments, with tag `0201` for Lib-1 and `0713` for Lib-2 | This repository
-| AAE_univ | Testing data for evaluating the k-mer similarity performance of AAE model to check the quality of training process | This repository
-| PredNet_round1 | Initial training dataset for training DenseLSTM predictor, dataset are from `NM2018`, processed already | This repository
-| PredNet_final | The training dataset for the second round of training DenseLSTM predictor, dataset are from the combination of Lib-1 and Lib-2, processed already | This repository
+| Name | Description|
+| ------ | ------ |
+| hg19.cage_peak_counts.osc.txt | Counts from CAGE-seq across 889 cell types
+| hg19.cage_peak_tpm.osc | Expression levels (TPM) from CAGE-seq across 889 cell types
+| Monitor_Dataset | Dataset for training the monitor to determine whether a sequence is a core promoter
+| Switch discriminator_Dataset | Dataset for training the switch discriminator to evaluate whether a sequence has switch-like properties
+| Performance evaluator_Dataset | Dataset for training the performance evaluator to evaluate the quality of a sequence’s switch properties
+| MPRA_1st_library | Results from the first round of MPRA experiments
+| MPRA_2nd_library | Results from the second round of MPRA experiments
 
 
-# Design cross-species regulatory sequences
-
-DeepCROSS is composed of a number of modules that can be imported as follows:
-
-**Round 1 :**
-
-- Generative model for representation (pretrain on `AAE_pretrain`, finetune on `AAE_finetune`, semi-supervised on `NM2018`)
-- Predictive model for selection (directly trained on `NM2018`)
-
-**Round 2 / Final :**
-
-- Generative model for representation (pretrain on `AAE_pretrain`, finetune on `AAE_finetune`, semi-supervised on `Lib-1` and `Lib-2`)
-- Predictive model for selection (follow the strategy in article, pretrain on top-90% filtered version of `NM2018`, and finetune on `Lib-1` and `Lib-2`)
-- Optimization (Genetic Algorithms, based on trained Predictive model)
+# Design switch-like core promoter sequences
 
 ## Generation
 
-The codes in `aae_meta.py` provide all necessary process for training and evaluating generative models, in all two rounds.
+The code in `1_DeepSwitch_model/MDM_switch.py` implements the MDM model deployed via GPro for efficient generation of switch-like sequences.
 
 ## Prediction
 
-The codes in `prednet_r1.py` and `prednet_final.py` provide all necessary process for training and evaluating predictive models for two rounds, separately.
+The code in `1_DeepSwitch_model/Monitor.py`, `1_DeepSwitch_model/Discriminator.py`, `1_DeepSwitch_model/Evaluator_strength.py`, and `1_DeepSwitch_model/Evaluator_specificity.py` is used to train the multi-layered predictive framework DeepSwitch.
 
 ## Optimization
 
-The codes in `optimization_final.py` provide the process needed for genetic algorithm, for getting the species-specific and cross-species data in the final round.
-
+The code in `1_DeepSwitch_model/DeepSwitch_MDM_design.py` integrates the outputs from the generation model and applies the predictive models to select optimal sequences.
 
 # Other Information
 
-The necessary verification information for the figures in the main text and supplementaries has been partially provided in the `figs` folder. To ensure the conciseness of the repository, we have not provided other redundant information, including the large-scale sampling required for Figure 5, DNAshape information, etc. The codes for obtaining these data have been fully provided. You can access further supports through issues or email.
-
-Our original codes used absolute paths, which I have manually changed to relative paths. However, there may still be some path errors, and we welcome your feedback.
-
-Some interval output files, including specific calibration strategies and column information in `final_overlap.csv` under the AAE_supervised folder, may cause confusion. For example, the `EC(2021)` column actually corresponds to the data of `Lib-1`. This is due to historical reasons; we initially designed these sequences in 2021 but updated the MPRA results on February 1, 2024 (`0201`), resulting in two tag information. We have tried our best to minimize these interval details that can easily cause confusion.
-
-The Zenodo repository for DeepCROSS [toolkit](https://doi.org/10.5281/zenodo.14600295) and [dataset](https://doi.org/10.5281/zenodo.14598567) have also been updated.
+The Zenodo repository for DeepSwitch [trained models and datasets](https://zenodo.org/records/17567543) have also been updated.
 
 
 # License
 
-For academic use, this project is licensed under the MIT License (see the LICENSE file for details). For commercial use, please contact the authors.
+This code is released under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) license. You are free to use, share, and adapt the code for non-commercial purposes. Any commercial use requires separate permission from the copyright holders.
 
 # Citations
 
 ~~~
 
-[1] Makhzani, Alireza, et al. "Adversarial autoencoders." arXiv preprint arXiv:1511.05644 (2015).
-[2] Wang, Haochen, et al. "GPro: generative AI-empowered toolkit for promoter design." Bioinformatics 40.3 (2024): btae123.
-[3] Gilchrist, Cameron LM, et al. "Cblaster: a remote search tool for rapid identification and visualization of homologous gene clusters." Bioinformatics Advances 1.1 (2021): vbab016.
-[4] Fahimipour, Ashkaan K., and Thilo Gross. "Mapping the bacterial metabolic niche space." Nature communications 11.1 (2020): 4887.
-[5] Johns, Nathan I., et al. "Metagenomic mining of regulatory elements enables programmable species-selective gene expression." Nature methods 15.5 (2018): 323-329.
+[1] Yu, H., & WangLabTHU. (2025). Decoding the design logic of switch-like core promoters. Zenodo. https://doi.org/10.5281/zenodo.17567543
 ~~~
