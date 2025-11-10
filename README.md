@@ -69,6 +69,15 @@ The code in `1_DeepSwitch_model/DeepSwitch_MDM_design.py` integrates the outputs
 
 The Zenodo repository for DeepSwitch [trained models and datasets](https://zenodo.org/records/17567543) have also been updated.
 
+### Folder Structure and Contents
+
+| Folder | Description |
+|--------|-------------|
+| `0_preprocessing` | Data preprocessing pipelines used for sequence filtering and evaluation in DeepSwitch |
+| `1_DeepSwitch_model` | Codes for sequence generation, prediction, and optimization: <br> - `MDM_switch.py`: generation of switch-like sequences <br> - `Monitor.py`, `Discriminator.py`, `Evaluator_strength.py`, `Evaluator_specificity.py`: training predictive models <br> - `DeepSwitch_MDM_design.py`: integration of generation and predictive models for sequence selection |
+| `2_MOO_model` | Iterative multi-objective optimization framework for designing sequences in the second-round MPRA library |
+| `3_other_analysis` | Codes for downstream statistical analysis, visualization, and performance evaluation of experimental results |
+
 
 # License
 
