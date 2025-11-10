@@ -12,23 +12,32 @@ DeepSwitch is a deep learning–based framework that predicts core promoter acti
 ![Figure 1](./Figures/github/figure1.png)
 
 
-We validated the DeepCROSS-designed RSs by massively parallel reporter assay experiments. The DeepCROSS model refined by this strategy demonstrated a significant improvement in predicting RS activity performance. The experimental validation confirmed that the final DeepCROSS model achieved 90.0% and 93.3% accuracy in designing species-preferred and cross-species RSs respectively. These synthetic RSs exhibited high diversity and low sequence similarity to their natural counterparts within bacterial genomes.
-
-
 # Preparation
 
 ## Environment Setup
 
-For the convenience of researchers seeking seamless utilization, we have adhered to all environmental configurations as previously established in our released GPro toolkit. To set up the virtual environment for DeepCROSS, please follow the instructions provided in our [wiki](https://github.com/WangLabTHU/GPro/wiki/2.-Installation#installation). All dependencies will be automatically installed as part of this process, including appropriate version of PyTorch. The requirement of hardware and detailed [session](https://github.com/WangLabTHU/GPro/wiki/6.-Session-Information) information have also been previously provided.
+This code requires a computer with a GPU to accelerate the training of deep learning models, otherwise it will take an extremely long time. 
 
-Additionally, we have gone a step further to provide an installation guide specifically for servers without internet access. The necessary instructions for this offline installation can be found in the following [wiki](https://github.com/WangLabTHU/GPro/wiki/2.-Installation#alternative-choose-envs-for-offline-machine) section, which outlines the process for successful setup.
+**Env Requirements:** 
+This code has been tested on the following version of env requirements:
+- CUDA Version: 12.2
+- Python 3.9.12
+- PyTorch 1.12.1+cu116
 
-DeepCROSS is built upon the previously released toolkit [GPro](https://academic.oup.com/bioinformatics/article/40/3/btae123/7617687), facilitating convenient and rapid sequence reading, encoding, as well as the implementation of Early Stopping mechanisms. 
+Higher version of Python and Pytorch could also support the function of this package.
 
+The function of this package depends on the following Python packages:
+    numpy
+    imblearn
+    matplotlib
+    pandas
+    seaborn
+    scikit-learn
+    Levenshtein
 
 ## Dataset Preparation
 
-This study is primarily based on the aae_meta version of DeepCROSS. The relevant training data is stored in the dataset folders. The following table conclude the functionality of these data and how to obtain them.
+This study is primarily based on the CAGE-seq data from FANTOM5. The relevant training data is stored in the dataset folders. The following table conclude the function of these data.
 
 
 | Folder Name | Description| Acquisition|
