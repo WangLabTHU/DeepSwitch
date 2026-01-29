@@ -9,7 +9,7 @@ The code for computational implementation of "Decoding the design logic of switc
 DeepSwitch is a deep learning–based framework that predicts core promoter activity and specificity and enables de novo design through multi-objective optimization. Using massively parallel reporter assays, we profile 48,000 natural and synthetic sequences in inducible and cell type-specific systems, uncovering regulatory grammar from single-base variants to motif combinations that drive switch-like transcriptional responses. Through iterative optimization, we engineer synthetic core promoters exhibiting up to 16-fold higher specificity than the commonly used miniCMV at comparable maximal output, maintaining robust performance across distinct systems.
 
 
-![Figure 1](./Figures/github/figure1.png)
+![Figure 1](./Figures/github/Figure 1.tif)
 
 
 # Preparation
