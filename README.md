@@ -2,7 +2,7 @@
 
 *hyu edited on Nov 10, 2025*
 
-The code for computational implementation of "Decoding the design logic of switch-like core promoters".
+The code for computational implementation of "A deep learning framework for designing switch-like core promoters".
 
 # Introduction
 
@@ -16,7 +16,7 @@ DeepSwitch is a deep learning–based framework that predicts core promoter acti
 
 ## Environment Setup
 
-This code requires a computer with a GPU to accelerate the training of deep learning models, otherwise it will take an extremely long time. 
+This code requires a computer with a GPU to accelerate the training of deep learning models, otherwise it will take a long time. 
 
 **Env Requirements:** 
 This code has been tested on the following version of env requirements:
