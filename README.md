@@ -8,9 +8,15 @@ The code for computational implementation of "A deep learning framework for desi
 
 DeepSwitch is a deep learning–based framework that predicts core promoter activity and specificity and enables de novo design through multi-objective optimization. Using massively parallel reporter assays, we profile 48,000 natural and synthetic sequences in inducible and cell type-specific systems, uncovering regulatory grammar from single-base variants to motif combinations that drive switch-like transcriptional responses. Through iterative optimization, we engineer synthetic core promoters exhibiting up to 16-fold higher specificity than the commonly used miniCMV at comparable maximal output, maintaining robust performance across distinct systems.
 
-
 ![Figure 1](./Figures/github/Figure1.png)
+**Figure 1.** Overview of the DeepSwitch framework, including sequence generation, multi-layered prediction, iterative multi-objective optimization and massively parallel reporter assays.
 
+# Quick Start
+
+1. Clone the repository
+2. Download datasets and pretrained models from Zenodo
+3. Set up the environment
+4. Run DeepSwitch sequence design
 
 # Preparation
 
